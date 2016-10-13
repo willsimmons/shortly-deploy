@@ -94,17 +94,6 @@ module.exports = function(grunt) {
       }
     },
 
-    gitadd: {
-      task: {
-        options: {
-          force: true
-        },
-        files: {
-          src: ['public/dist/**']
-        }
-      }
-    },
-
     gitpush: {
       target: {
         options: {
@@ -152,7 +141,7 @@ module.exports = function(grunt) {
   grunt.registerTask('deploy', function (target) {
 
     // add your deploy tasks here
-    grunt.task.run(['eslint', 'test', 'build', 'gitadd', 'gitpush']);
+    grunt.task.run(['eslint', 'test', 'build', 'gitpush']);
   });
 
 
