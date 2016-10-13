@@ -22,7 +22,8 @@ module.exports = function(grunt) {
     mochaTest: {
       test: {
         options: {
-          reporter: 'spec'
+          reporter: 'spec',
+          noFail: false
         },
         src: ['test/**/*.js']
       }
@@ -126,7 +127,7 @@ module.exports = function(grunt) {
   ]);
 
   grunt.registerTask('build', function(target) {
-    grunt.task.run(['eslint', 'concat', 'uglify', 'cssmin']);
+    grunt.task.run(['concat', 'uglify', 'cssmin']);
   });
 
   grunt.registerTask('upload', function(n) {
@@ -140,7 +141,7 @@ module.exports = function(grunt) {
   grunt.registerTask('deploy', function (target) {
 
     // add your deploy tasks here
-    grunt.task.run(['build', 'gitpush']);
+    grunt.task.run(['eslint', 'test', 'build', 'gitpush']);
   });
 
 
