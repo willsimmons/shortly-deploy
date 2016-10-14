@@ -6,6 +6,7 @@ var app = require('../server-config.js');
 var db = require('../app/config');
 var User = require('../app/models/user');
 var Link = require('../app/models/link');
+var util = require('../lib/utility');
 
 /////////////////////////////////////////////////////
 // NOTE: these tests are designed for mongo!
@@ -14,6 +15,7 @@ var Link = require('../app/models/link');
 describe('', function() {
 
   beforeEach(function(done) {
+    
     // Log out currently signed in user
     request(app)
       .get('/logout')
@@ -21,6 +23,7 @@ describe('', function() {
 
         // Delete objects from db so they can be created later for the test
         Link.remove({url: 'http://www.roflzoo.com/'}).exec();
+        // Link.remove({});
         User.remove({username: 'Savannah'}).exec();
         User.remove({username: 'Phillip'}).exec();
 
@@ -97,6 +100,9 @@ describe('', function() {
           baseUrl: 'http://127.0.0.1:4568',
           visits: 0
         });
+
+        var shortened = util.shorten(link.url);
+        link.code = shortened.toString();
 
         link.save(function() {
           done();
