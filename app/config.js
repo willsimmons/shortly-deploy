@@ -14,22 +14,8 @@ db.once('open', function() {
 });
 
 
-var urlSchema = mongoose.Schema({
-  id: ObjectId, // new mongoose.Types.ObjectId;
-  url: String,
-  baseUrl: String,
-  code: String,
-  title: String,
-  visits: Number,
-  timestamps: Date // Date.now
-});
 
-var userSchema = mongoose.Schema({
-  id: ObjectId,
-  username: String,
-  password: String,
-  timestamps: Date
-});
+
 
 
 module.exports = db;
